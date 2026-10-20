@@ -1,0 +1,6 @@
+{
+  "name": "Mandato Aberto",
+  "description": "Acompanhe seu representante em dados. Consulta de gastos, propostas, votações e dados oficiais da Câmara dos Deputados.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

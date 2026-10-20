@@ -1,0 +1,685 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Explorar Deputados | Mandato Aberto</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-secondary-container": "#006f66",
+            "surface": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#e2e7ff",
+            "error": "#ba1a1a",
+            "secondary-fixed-dim": "#6bd8cb",
+            "on-tertiary-container": "#4599b6",
+            "on-secondary-fixed": "#00201d",
+            "surface-container-highest": "#dae2fd",
+            "surface-container": "#eaedff",
+            "primary-fixed": "#d1e4ff",
+            "on-error-container": "#93000a",
+            "on-surface": "#131b2e",
+            "on-tertiary": "#ffffff",
+            "inverse-surface": "#283044",
+            "primary": "#001428",
+            "secondary": "#006a61",
+            "tertiary": "#00161e",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#81d1f0",
+            "on-secondary": "#ffffff",
+            "tertiary-container": "#002c39",
+            "surface-tint": "#49607c",
+            "secondary-container": "#86f2e4",
+            "on-background": "#131b2e",
+            "background": "#faf8ff",
+            "on-surface-variant": "#43474d",
+            "inverse-primary": "#b0c9e8",
+            "outline-variant": "#c3c6ce",
+            "on-error": "#ffffff",
+            "primary-fixed-dim": "#b0c9e8",
+            "on-primary-fixed": "#011d35",
+            "on-primary": "#ffffff",
+            "on-primary-fixed-variant": "#314863",
+            "primary-container": "#0f2942",
+            "inverse-on-surface": "#eef0ff",
+            "on-primary-container": "#7991af",
+            "outline": "#74777e",
+            "on-tertiary-fixed": "#001f29",
+            "surface-container-low": "#f2f3ff",
+            "surface-bright": "#faf8ff",
+            "on-secondary-fixed-variant": "#005049",
+            "surface-variant": "#dae2fd",
+            "tertiary-fixed": "#b9eaff",
+            "on-tertiary-fixed-variant": "#004d62",
+            "secondary-fixed": "#89f5e7",
+            "surface-dim": "#d2d9f4"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            "space-md": "1rem",
+            "margin-tablet": "1.5rem",
+            "gutter": "1rem",
+            "margin-desktop": "2rem",
+            "space-sm": "0.5rem",
+            "space-xl": "2rem",
+            "gutter-desktop": "1.5rem",
+            "margin": "1rem"
+          },
+          "fontFamily": {
+            "body-md": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-sm": ["Inter"],
+            "display-lg": ["Inter"],
+            "body-md-medium": ["Inter"],
+            "headline-lg": ["Inter"],
+            "caption": ["Inter"],
+            "headline-sm": ["Inter"],
+            "numeric-metric": ["Inter"],
+            "label-md": ["Inter"],
+            "display-lg-mobile": ["Inter"],
+            "body-lg-medium": ["Inter"],
+            "headline-md": ["Inter"],
+            "numeric-table": ["Inter"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "body-md-medium": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "caption": ["11px", { "lineHeight": "14px", "fontWeight": "400" }],
+            "headline-sm": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "numeric-metric": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+            "display-lg-mobile": ["26px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }],
+            "body-lg-medium": ["16px", { "lineHeight": "24px", "fontWeight": "500" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col font-body-md text-body-md pb-28">
+<!-- Desktop TopAppBar (Shared Component Execution) -->
+<header class="bg-surface-container-lowest sticky top-0 z-40 shadow-sm border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-space-lg py-space-sm max-w-7xl mx-auto">
+<!-- Brand & Public Data Credential -->
+<div class="flex items-center gap-space-lg">
+<a class="flex items-center gap-2 group" href="#">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_balance">account_balance</span>
+</div>
+<span class="text-headline-sm font-headline-sm font-semibold text-primary tracking-tight">Mandato Aberto</span>
+</a>
+<div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container-low border border-outline-variant">
+<span class="w-2 h-2 rounded-full bg-secondary inline-block"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">DADOS ABERTOS / CÂMARA DOS DEPUTADOS</span>
+<span class="material-symbols-outlined text-secondary text-[16px] ml-0.5" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<!-- Navigation Links (Web Cluster) -->
+<nav class="hidden md:flex items-center gap-space-md">
+<!-- Active Destination: Deputados -->
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-primary bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="groups">groups</span>
+<span class="">Deputados</span>
+</a>
+<!-- Destination: Comparar -->
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="compare_arrows">compare_arrows</span>
+<span class="">Comparar</span>
+<span class="px-1.5 py-0.2 rounded-full bg-primary-container text-on-primary font-caption text-caption">2</span>
+</a>
+<!-- Destination: Sobre -->
+<a class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container font-body-md text-body-md transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]" data-icon="info">info</span>
+<span class="">Sobre os dados</span>
+</a>
+</nav>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-7xl mx-auto px-space-lg py-space-xl flex-grow flex flex-col gap-space-lg">
+<!-- Header Banner: Contextual Scope -->
+<div class="border-b border-outline-variant pb-space-lg">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div>
+<span class="font-caption text-caption text-on-surface-variant uppercase tracking-wider font-semibold">Repositório Cívico e Monitoramento Legislativo</span>
+<h1 class="text-display-lg font-display-lg text-primary mt-1">Conheça a atuação dos deputados federais</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-3xl">
+            Consulte gastos, propostas, votações e outros dados públicos do mandato. Dados quantitativos oficiais sem avaliações subjetivas.
+          </p>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant font-caption text-caption bg-surface-container-lowest px-3 py-2 rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-[16px] text-secondary" data-icon="update">update</span>
+<span class="">Atualizado diariamente via API da Câmara</span>
+</div>
+</div>
+</div>
+<!-- Unified Search & Filter Control Card -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-md shadow-sm">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center">
+<!-- Search Input -->
+<div class="lg:col-span-5 relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]" data-icon="search">search</span>
+<input class="w-full pl-10 pr-9 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md placeholder:text-outline focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="Buscar por nome do deputado, partido ou estado..." type="text">
+<button class="absolute right-2.5 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface transition-colors" title="Limpar pesquisa" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Inline Filters -->
+<div class="lg:col-span-7 flex flex-wrap sm:flex-nowrap items-center gap-space-sm">
+<!-- UF Dropdown -->
+<div class="w-full sm:w-1/3">
+<label class="sr-only">Filtrar por UF</label>
+<select class="w-full py-2.5 px-3 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option value="">UF: Todos</option>
+<option value="SP">SP - São Paulo</option>
+<option value="RJ">RJ - Rio de Janeiro</option>
+<option value="MG">MG - Minas Gerais</option>
+<option value="CE">CE - Ceará</option>
+<option value="PR">PR - Paraná</option>
+<option value="AM">AM - Amazonas</option>
+<option value="RS">RS - Rio Grande do Sul</option>
+</select>
+</div>
+<!-- Partido Dropdown -->
+<div class="w-full sm:w-1/3">
+<label class="sr-only">Filtrar por Partido</label>
+<select class="w-full py-2.5 px-3 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option value="">Partido: Todos</option>
+<option value="PLD">PLD</option>
+<option value="PRC">PRC</option>
+<option value="FCS">FCS</option>
+<option value="UNP">UNP</option>
+<option value="BRD">BRD</option>
+<option value="VNC">VNC</option>
+</select>
+</div>
+<!-- Situação Dropdown -->
+<div class="w-full sm:w-1/3">
+<label class="sr-only">Filtrar por Situação</label>
+<select class="w-full py-2.5 px-3 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary">
+<option selected="" value="exercicio">Situação: Em exercício</option>
+<option value="licenca">Licenciado</option>
+<option value="suplente">Suplente</option>
+<option value="todos">Todas as situações</option>
+</select>
+</div>
+<!-- Clear Button -->
+<button class="whitespace-nowrap px-3 py-2.5 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-lg font-body-md-medium text-body-md-medium transition-colors flex items-center gap-1 border border-transparent hover:border-outline-variant" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="filter_alt_off">filter_alt_off</span>
+<span class="">Limpar</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Results Count & Layout Toolbar -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-primary">513</span>
+<span class="font-body-md text-body-md text-on-surface-variant">deputados federais encontrados</span>
+</div>
+<div class="flex items-center gap-space-md">
+<!-- Sort Control -->
+<div class="flex items-center gap-2">
+<label class="font-caption text-caption text-on-surface-variant font-medium uppercase" for="sort-select">Ordenar por:</label>
+<select class="py-1.5 px-3 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface font-body-md text-body-md focus:outline-none focus:ring-1 focus:ring-primary" id="sort-select">
+<option selected="">Nome (A-Z)</option>
+<option>Maior gasto CEAP</option>
+<option>Menor gasto CEAP</option>
+<option>Maior presença em plenário</option>
+<option>Menor presença em plenário</option>
+</select>
+</div>
+<!-- View Mode Switcher -->
+<div class="flex items-center border border-outline-variant rounded-lg p-0.5 bg-surface-container-lowest">
+<button class="p-1.5 rounded bg-surface-container text-primary" title="Visualização em grade" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-1.5 rounded text-on-surface-variant hover:text-primary" title="Visualização em lista" type="button">
+<span class="material-symbols-outlined text-[20px]" data-icon="format_list_bulleted">format_list_bulleted</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Responsive Grid of Parliamentarian Dossier Cards (3 Columns Desktop) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Card 1: Mariana Vasconcelos de Alencar -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Official formal studio headshot portrait of a Brazilian female congresswoman in her early forties with neatly styled dark hair and professional business navy attire. High-clarity institutional portrait photograph set against a soft, clean neutral studio background with crisp, even corporate studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMrsBMm1q4bz-cI3VsSKjqyt4b-_Kww5xf2tqf0sKdY4423SiH1a7YIOOA_LC1dQHdSdtvYogC7w9VUgzqg7nfhGPDBTZQ6FWlc5mIlEw5Rn9QUXMJYgHdZK4PQq1LZ6HaktoFib51qmUfiFJwnNEHifycwrXUwypTApR3TgrVpLj_lej2_x8t8kvP08_IqFwz4HCxUFQ6sSHCo1so2yzfqIcBQxLqKu9UDMhGSc93nZdLoh6N6Tqx">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">PLD</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">CE</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-secondary-container font-caption text-caption bg-secondary-container/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em exercício
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Mariana Vasconcelos de Alencar">
+                Mariana Vasconcelos de Alencar
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 214.890,12</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 58%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">58% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">94,2%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 94.2%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">49 de 52 sessões deliberativas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-primary border border-primary-container font-body-md-medium text-body-md-medium flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<span class="">Comparando</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Carlos Eduardo Silveira Guimarães -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Formal official parliamentary portrait of a distinguished Brazilian male politician in his late fifties with neat graying hair wearing a tailored charcoal suit and silk tie. Institutional lighting with a flat, light architectural background in crisp public service photographic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRHUIPnEoWfLoFoccdnPGGuIWl2vK6mg_N-amRei7X9eH3ULsedYsrd3V8tjobOMt_d9iJmuHkEJk02LO1mBMv7Yd0mPSHllQ1COmvzrpB1MCvyJCWERwD1nep8bHuVi8el9rr-GT3ok7f62KhiV9kPuHWp33dY09biEfK_q54x82w_PTztkX1y73LjN2sEMivsnJX-5zvxN8bwNFzsUMok4P-UIzqVYi4UUDASg9z8KaSsbh1UIp5">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">PRC</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">PR</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-secondary-container font-caption text-caption bg-secondary-container/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em exercício
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Carlos Eduardo Silveira Guimarães">
+                Carlos Eduardo Silveira Guimarães
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 189.412,50</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 51%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">51% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">91,0%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 91%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">47 de 52 sessões deliberativas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg bg-surface-container text-primary border border-primary-container font-body-md-medium text-body-md-medium flex items-center justify-center gap-1" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+<span class="">Comparando</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Ana Beatriz Fontes de Medeiros -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Formal identification portrait of a Brazilian congresswoman in her thirties wearing glasses and a formal dark blazer. Clean white and light gray institutional office backdrop with soft studio illumination highlighting a serious, dignified expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkpBNxo5-30x8R2nb2xpXs1Jbkryw57EjGBejvxL-iZhufMfGgDZ3xwjTNvaIBFeC8fKC44fINfbA4npWEHj4yhDsgPC0cSSZEzmqwYf5qxD0_AgJVcmA7y8bUMgdzYbaoGyfeizl49uuirA5mpUs9bqkFugqUwB3Kqe1tVeHzCm5f4Kf2zq8gBcJugJ0EvwrnBB2346wwR6-inWu-s2IBSMZdM12Udrog_bCN5pLhFyZxAbgbwgoF">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">FCS</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">AM</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-high">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Licenciado (Saúde)
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Ana Beatriz Fontes de Medeiros">
+                Ana Beatriz Fontes de Medeiros
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 96.104,80</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 26%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">26% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">78,5%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 78.5%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">22 de 28 sessões convocadas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface hover:border-primary font-body-md-medium text-body-md-medium flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">Comparar</span>
+</button>
+</div>
+</article>
+<!-- Card 4: Rodrigo Tavares Figueiredo Filho -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Formal official parliamentary directory headshot of a Brazilian federal deputy in his late forties wearing modern rimless glasses, a dark navy jacket, and crisp light blue shirt. Direct gaze with calm professional demeanor in front of a neutral backdrop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvnfSEPqfuEJVuasYmNdQ8TUcpr3_slRge20qembb3FuTh9L_ynyFyIqUm4jU-n5F_dMmhaK7qrg2zr_e3MsVtv4LnI2ytLEUuLdNneeZv5N6E8EvrGalg5H-tMDf3cDVyuBJH2DkeaGx-K6UXe04kFcNsp4lN6klY-swJanQqtLPAG49FSXODe4xNWM24dXswcYUw7AxJIpsgJZkaMagQ6M978t_9T78RNKEu_XXP8XuFhmkhuchK">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">UNP</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">SP</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-secondary-container font-caption text-caption bg-secondary-container/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em exercício
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Rodrigo Tavares Figueiredo Filho">
+                Rodrigo Tavares Figueiredo Filho
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 287.320,00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 77%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">77% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">97,8%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 97.8%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">51 de 52 sessões deliberativas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface hover:border-primary font-body-md-medium text-body-md-medium flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">Comparar</span>
+</button>
+</div>
+</article>
+<!-- Card 5: Maria Clara Gusmão Duarte -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Official portrait photograph of a female federal representative in her late thirties with a friendly yet professional institutional expression. Plain neutral gray background with sharp high-definition detail and professional studio lights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmGYpjvxYM-e6Rz4IaB1qhnrj1nGyhhs8AbPWQLx4K3XtsPhSqeS5i_Ungfe0d3FI6nzXAVq06DPr3Sps_TdJMjxoabuyLQERjVvCK-Nalovql058AsLmCZehvs9KYEDYX9xYVorPH50jbPZXk41epxuXNEANoGnqSvvXjlGtcYhiNIe4iynbZceHe1bZ2XMdq4hXKFWFV-2RrGCZVa4etmwLZvvsBh_kG7el8i-kf1TUFFyh5lGDa">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">BRD</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">MG</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-secondary-container font-caption text-caption bg-secondary-container/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em exercício
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Maria Clara Gusmão Duarte">
+                Maria Clara Gusmão Duarte
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 164.210,00</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 44%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">44% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">88,4%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 88.4%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">46 de 52 sessões deliberativas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface hover:border-primary font-body-md-medium text-body-md-medium flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">Comparar</span>
+</button>
+</div>
+</article>
+<!-- Card 6: Hélio Monteiro de Souza -->
+<article class="bg-surface-container-lowest border border-outline-variant rounded-xl p-space-lg shadow-sm hover:border-outline hover:shadow-md transition-all flex flex-col justify-between">
+<div>
+<!-- Header Profile Row -->
+<div class="flex items-start gap-space-md">
+<img class="w-16 h-16 rounded-lg object-cover border border-outline-variant flex-shrink-0" data-alt="Dignified executive portrait of a senior Brazilian male legislator in his early sixties with short silver hair wearing an immaculate dark blue suit and white shirt. Clear studio light setup with neutral background emphasizing civic transparency and accountability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgZMzOLcORURgE9EzqAIH5BNzcufymnXUzqvEnCqrf_oxEyY-1aRBxXrh4kgsn7cQdbswgAToYQlsYzmoclfTainl5Q1D5HjU8F7PjLSWRcN6jQTsqzrPcx66Hdk6jBu234qxUMLOiFjAWnePDftA3h_tSiqJpjvzvkw3xJAE82cy2zSLYhAe_jxP_6-Vxdw_EhtJfIQekzpUu_YKukLqWw5HcvoPiojS7lpZEIz-TrPLkkyoGehvy">
+<div class="min-w-0 flex-1">
+<div class="flex items-center gap-1.5 mb-1 flex-wrap">
+<span class="px-2 py-0.5 rounded text-primary font-caption text-caption font-semibold bg-surface-container border border-outline-variant">VNC</span>
+<span class="px-2 py-0.5 rounded text-on-surface-variant font-caption text-caption bg-surface-container-low border border-outline-variant">RS</span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-on-secondary-container font-caption text-caption bg-secondary-container/40">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Em exercício
+                </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold truncate leading-tight" title="Hélio Monteiro de Souza">
+                Hélio Monteiro de Souza
+              </h2>
+<span class="font-caption text-caption text-on-surface-variant">Titular • 57ª Legislatura</span>
+</div>
+</div>
+<!-- Structured Metrics Division -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant space-y-3">
+<!-- Metric: CEAP -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Gastos CEAP (2024)</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">R$ 230.150,45</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 62%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">62% do teto anual disponível</span>
+</div>
+<!-- Metric: Presença -->
+<div>
+<div class="flex justify-between items-baseline mb-1">
+<span class="font-caption text-caption text-on-surface-variant uppercase font-medium">Presença em plenário</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-primary">92,3%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary-container h-full rounded-full" style="width: 92.3%;"></div>
+</div>
+<span class="font-caption text-caption text-on-surface-variant mt-1 block">48 de 52 sessões deliberativas</span>
+</div>
+</div>
+</div>
+<!-- Action Trigger Buttons -->
+<div class="mt-space-lg pt-space-md border-t border-outline-variant flex items-center gap-2">
+<a class="flex-1 py-2 text-center rounded-lg border border-primary text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium transition-colors" href="#">
+            Ver perfil
+          </a>
+<button class="flex-1 py-2 rounded-lg border border-outline-variant text-on-surface hover:border-primary font-body-md-medium text-body-md-medium flex items-center justify-center gap-1 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+<span class="">Comparar</span>
+</button>
+</div>
+</article>
+</div>
+<!-- Pagination Controls -->
+<div class="flex flex-col sm:flex-row items-center justify-between border-t border-outline-variant pt-space-lg gap-space-md">
+<div class="font-body-md text-body-md text-on-surface-variant">
+        Mostrando <span class="font-semibold text-primary">1 a 6</span> de 513 deputados
+      </div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-outline bg-surface-container-low cursor-not-allowed font-body-md-medium text-body-md-medium flex items-center gap-1" disabled="" type="button">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+<span class="">Anterior</span>
+</button>
+<div class="px-3 py-1 text-on-surface font-body-md-medium text-body-md-medium">
+          Página <span class="font-semibold text-primary">1</span> de 86
+        </div>
+<button class="px-3 py-1.5 rounded-lg border border-outline-variant text-primary hover:bg-surface-container font-body-md-medium text-body-md-medium flex items-center gap-1 transition-colors" type="button">
+<span class="">Próxima</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Persistent Comparison Dock (Level 3 Elevation - Anchored Desktop Bar) -->
+<aside class="fixed bottom-0 left-0 right-0 z-50 bg-surface-container-lowest border-t border-outline-variant shadow-[0_-4px_16px_rgba(15,23,42,0.08)]">
+<div class="max-w-7xl mx-auto px-space-lg py-2.5 flex flex-col md:flex-row items-center justify-between gap-3">
+<!-- Dock Left Metadata & Chips -->
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-secondary"></div>
+<span class="font-body-md-medium text-body-md-medium text-primary">Comparando 2 de 3 deputados</span>
+</div>
+<div class="flex items-center gap-2">
+<!-- Deputy Chip 1: Mariana -->
+<div class="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface">
+<img class="w-6 h-6 rounded-full object-cover border border-outline-variant" data-alt="Miniature circular avatar photo of Brazilian deputy Mariana Vasconcelos de Alencar in clear formal studio light on a neutral background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqVyHz3gztD0R0ZT57CkpDlFoNTXihhxAUIm4s7XzDBSobGIh6GMk6bb9wceGgkSb_4SSljsjHdV_vaJ9DpI9QCzc4FsSo1ExiUeMO2BbOzgfkQgcoaGfsWL2zEYV0C8XKR3tEkWHcllIR6s-odefM_LaJWC6BazPYNPa44nFRr0lR9WHN7o8BAqsxFIQ0mh4M6lLpL6cOhnQA-A6vVjdPcfiMTlOJs14g2e_BBgeY7Sadd1Q0d7y3">
+<span class="font-label-sm text-label-sm font-medium">Mariana Vasconcelos (PLD/CE)</span>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Remover da comparação" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Deputy Chip 2: Carlos Eduardo -->
+<div class="flex items-center gap-2 pl-1 pr-2 py-1 rounded-full bg-surface-container border border-outline-variant text-on-surface">
+<img class="w-6 h-6 rounded-full object-cover border border-outline-variant" data-alt="Miniature circular avatar photo of Brazilian deputy Carlos Eduardo Silveira Guimarães in sharp executive lighting with neutral tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRnQKvqtzG3gG2p14475g9jzrL_iWlYY3FIStLrElMr9V8ocxXHLZK8T6X1KU6K8jXyFtR9w1kqaPn9RQ-_Z_oTSo34HUKIA0ZzBkklzohMdcLXHSRX657dnyDsBsNkuAp9kNRMNSRJ65r_QiYnikX-7SAtiYpFO8vProoc8KVLUFDdRbHqyHI7yW0iotbIViGOW3-lAZPPqluf-uPfa2r-uIAZCg6FYPgHSdPMpAiJaT0mAj-6O_B">
+<span class="font-label-sm text-label-sm font-medium">Carlos Eduardo (PRC/PR)</span>
+<button class="text-on-surface-variant hover:text-error transition-colors" title="Remover da comparação" type="button">
+<span class="material-symbols-outlined text-[16px]" data-icon="close">close</span>
+</button>
+</div>
+<!-- Empty Slot Chip -->
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full border border-dashed border-outline text-outline font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+<span class="">Adicionar outro</span>
+</div>
+</div>
+</div>
+<!-- Dock Right Actions -->
+<div class="flex items-center gap-space-md">
+<button class="text-on-surface-variant hover:text-error font-body-md text-body-md underline transition-colors" type="button">
+          Limpar lista
+        </button>
+<a class="px-5 py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-body-md-medium text-body-md-medium shadow-sm transition-all flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="compare_arrows">compare_arrows</span>
+<span class="">Comparar deputados selecionados (2)</span>
+</a>
+</div>
+</div>
+</aside>
+
+
+</body></html>
